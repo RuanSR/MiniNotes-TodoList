@@ -1,0 +1,20 @@
+.block-red{
+    background-color: red;
+}
+
+.card-login {
+    width: 20rem;
+    font-weight: bold;
+}
+
+.logo-marca{
+    margin-bottom: 10%;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 1px;
+    border-color: chocolate;
+    max-inline-size: 90px;
+    text-align: center;
+    transform: rotate(-25deg);
+    font-size: medium;
+}
