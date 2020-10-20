@@ -18,3 +18,11 @@
     transform: rotate(-25deg);
     font-size: medium;
 }
+
+.title-cadastro{
+    font-weight: bold;
+}
+
+.linha-cadastro{
+    border-top: 1px solid #bbb
+}
