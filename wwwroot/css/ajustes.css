@@ -2,6 +2,10 @@
     background-color: red;
 }
 
+.texto-negrito{
+    font-weight: bold;
+}
+
 .card-login {
     width: 20rem;
     font-weight: bold;
@@ -19,6 +23,7 @@
     font-size: medium;
 }
 
+
 .title-cadastro{
     font-weight: bold;
 }
@@ -26,3 +31,4 @@
 .linha-cadastro{
     border-top: 1px solid #bbb
 }
+
