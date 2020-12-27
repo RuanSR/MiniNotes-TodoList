@@ -1,13 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MiniNotes_TodoList.Data.Database;
+using MiniNotes_TodoList.Data.Repositories;
 
 namespace MiniNotes
 {
@@ -20,13 +18,19 @@ namespace MiniNotes
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-        }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            //Database
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("Database")));
+
+            //Injection
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<INotaRepository, NotaRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
+        }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,16 +40,13 @@ namespace MiniNotes
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
