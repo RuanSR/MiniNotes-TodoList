@@ -1,0 +1,38 @@
+﻿<div class="container mt-5">
+    <div class="alert alert-primary mt-5 alert-dismissible fade show" role="alert">
+    <strong>Wellcome</strong> to MiniNotes! Its free!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-auto mt-5 card-login">
+            <div class="card shadow bg-white rounded">
+            <div class="card-header">
+                MiniNotes - Authentication
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                    <h5 class="card-title logo-marca sshadow-sm bg-white rounded">MiniNotes</h5>
+                    <img src="https://img.icons8.com/plasticine/48/000000/edit-property.png"/>
+                    <img src="https://img.icons8.com/plasticine/48/000000/delete-sign.png"/>
+                    <img src="https://img.icons8.com/plasticine/48/000000/price-tag.png"/>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email or User Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="btn-group d-flex">
+                        <button type="submit" class="btn btn-primary" asp-action="Dashboard">Login</button>
+                        <button type="submit" class="btn btn-outline-success ml-1" asp-action="Cadastro" >Cretae Accounnt</button>
+                    </div>
+                    <a class="font-weight-bold text-secondary d-block text-center mt-3" href="#">I Forget</a>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
