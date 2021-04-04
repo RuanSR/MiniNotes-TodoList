@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniNotes.Models;
+using MiniNotes.Models.ViewModels;
 
 namespace MiniNotes.Controllers
 {
-    public class HomeController : Controller
+    public class IndexController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<IndexController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IndexController(ILogger<IndexController> logger)
         {
             _logger = logger;
         }
@@ -23,7 +20,7 @@ namespace MiniNotes.Controllers
             return View();
         }
 
-        public IActionResult Cadastro()
+        public IActionResult Create()
         {
             return View();
         }

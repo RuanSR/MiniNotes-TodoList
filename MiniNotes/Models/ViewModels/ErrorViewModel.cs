@@ -1,6 +1,6 @@
 using System;
 
-namespace MiniNotes.Models
+namespace MiniNotes.Models.ViewModels
 {
     public class ErrorViewModel
     {
