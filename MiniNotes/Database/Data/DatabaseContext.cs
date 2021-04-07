@@ -7,8 +7,8 @@ namespace MiniNotes_TodoList.Data.Database
     {
         
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options){ }
-        public DbSet<User> Usuarios { get; set; }
-        public DbSet<Note> Notas { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Note> Notes { get; set; }
         public DbSet<Tag> Tags { get; set; }
     }
 
