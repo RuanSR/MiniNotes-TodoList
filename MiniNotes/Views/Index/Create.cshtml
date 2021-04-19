@@ -27,15 +27,15 @@
                 <span asp-validation-for="@Model.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="User Name">
+                <input asp-for="@Model.UserName" class="form-control" placeholder="User Name">
                 <span asp-validation-for="@Model.UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" placeholder="Email Address">
+                <input asp-for="@Model.Email" class="form-control" placeholder="Email Address">
                 <span asp-validation-for="@Model.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password">
+                <input asp-for="@Model.Password" class="form-control" placeholder="Password">
                 <span asp-validation-for="@Model.Password" class="text-danger"></span>
             </div>
             <div class="btn-group d-flex">
