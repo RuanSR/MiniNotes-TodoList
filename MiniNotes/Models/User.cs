@@ -19,11 +19,11 @@ namespace MiniNotes_TodoList.Models
         [Display(Name = "Nome de Usuário")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Prencha um email!")]
+        [Required(ErrorMessage = "Prencha seu email!")]
         [EmailAddress(ErrorMessage = "Preencha o campo email corretamente!")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Preenhca uma senha!")]
+        [Required(ErrorMessage = "Crie uma senha!")]
         public string Password { get; set; }
 
         public IList<Note> Notes { get; set; }
