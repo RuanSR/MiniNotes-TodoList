@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniNotes.Models;
 using MiniNotes.Models.ViewModels;
+using MiniNotes_TodoList.Models;
 
 namespace MiniNotes.Controllers
 {
@@ -24,6 +25,19 @@ namespace MiniNotes.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["CREATE_ERR_MSG"] = "Erro ao criar usuário!";
+                return View(user);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Dashboard()
         {
             return View();
