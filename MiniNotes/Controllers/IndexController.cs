@@ -51,8 +51,11 @@ namespace MiniNotes.Controllers
                 TempData["CREATE_ERR_MSG"] = "Erro ao criar usuário!";
                 return View(user);
             }
+
             TempData["CREATED_ACCOUNT_MSG"] = "Conta criada com sucesso!";
             TempData["USER_NAME_ACCOUNT"] = user.UserName;
+
+            _userRepo.AddUser(user);
             return RedirectToAction(nameof(Index));
         }
 
