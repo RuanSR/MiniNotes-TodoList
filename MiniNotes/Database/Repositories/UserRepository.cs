@@ -28,6 +28,14 @@ namespace MiniNotes_TodoList.Data.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<User> GetUserByLogin(string login, string password)
+        {
+            return await _dbContext.Users
+                .Where(u => u.UserName == login || u.Email == login 
+                    && u.Password == password)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task AddUser(User user)
         {
             await _dbContext.AddAsync(user);
