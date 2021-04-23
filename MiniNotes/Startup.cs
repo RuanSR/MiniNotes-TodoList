@@ -35,6 +35,9 @@ namespace MiniNotes
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<DataService>();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             IServiceProvider servicePorvider)
@@ -52,6 +55,7 @@ namespace MiniNotes
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseSession();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

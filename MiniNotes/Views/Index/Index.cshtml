@@ -1,5 +1,16 @@
 ﻿<div class="container mt-5">
 
+
+    @if (TempData["INDEX_ERROR_MSG"] != null)
+    {
+        <div class="alert alert-danger mt-5 alert-dismissible fade show" role="alert">
+            <strong>@TempData["INDEX_ERROR_MSG"]!</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
     @if (TempData["CREATED_ACCOUNT_MSG"] != null)
     {
         <div class="alert alert-success mt-5 alert-dismissible fade show" role="alert">
@@ -9,26 +20,24 @@
             </button>
         </div>
     }
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger mt-5 alert-dismissible fade show" role="alert">
+            <strong>@ViewBag.Error</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
     else
     {
-        @if (ViewBag.Error == null)
-        {
-            <div class="alert alert-primary mt-5 alert-dismissible fade show" role="alert">
-                <strong>Wellcome</strong> to MiniNotes! It's free!
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-danger mt-5 alert-dismissible fade show" role="alert">
-                @ViewBag.Error
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        }
+        <div class="alert alert-primary mt-5 alert-dismissible fade show" role="alert">
+            <strong>Wellcome</strong> to MiniNotes! It's free!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     }
 
     <div class="row justify-content-center">

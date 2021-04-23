@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MiniNotes.Library.Filters;
 using MiniNotes.Models.Requests;
 using MiniNotes.Models.ViewModels;
 using MiniNotes_TodoList.Data.Repositories;
@@ -9,6 +11,7 @@ using MiniNotes_TodoList.Models;
 
 namespace MiniNotes.Controllers
 {
+    
     public class IndexController : Controller
     {
         private readonly ILogger<IndexController> _logger;
@@ -22,12 +25,21 @@ namespace MiniNotes.Controllers
 
         public IActionResult Index()
         {
+            if(HttpContext.Session.GetString("Login") != null)
+            {
+                return RedirectToAction(nameof(Dashboard));
+            }
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Index(LoginRequest request)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(request);
+            }
+            
             var user = await _userRepo.GetUserByLogin(request.Login, request.Password);
 
             if (user == null)
@@ -35,6 +47,9 @@ namespace MiniNotes.Controllers
                 ViewBag.Error = "Usuário ou senha incorretos!";
                 return View(request);
             }
+
+            HttpContext.Session.SetString("Login", "true");
+
             return RedirectToAction(nameof(Dashboard));
         }
 
@@ -59,9 +74,17 @@ namespace MiniNotes.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Login]
         public IActionResult Dashboard()
         {
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
