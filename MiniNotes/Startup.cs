@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MiniNotes.Database;
 using MiniNotes_TodoList.Data.Database;
 using MiniNotes_TodoList.Data.Repositories;
+using System;
 
 namespace MiniNotes
 {
@@ -21,6 +23,8 @@ namespace MiniNotes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
 
             //Database
             services.AddDbContext<DatabaseContext>(options =>
@@ -30,8 +34,10 @@ namespace MiniNotes
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
+            services.AddScoped<DataService>();
         }
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            IServiceProvider servicePorvider)
         {
             if (env.IsDevelopment())
             {
@@ -53,6 +59,8 @@ namespace MiniNotes
                     name: "default",
                     pattern: "{controller=Index}/{action=Index}/{id?}");
             });
+
+            servicePorvider.GetService<DataService>().InitializeDatabase();
         }
     }
 }
