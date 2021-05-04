@@ -26,7 +26,8 @@ namespace MiniNotes.Data.Database
                 u.HasMany(u => u.Notes)
                     .WithOne(n => n.User);
 
-                u.HasMany(u => u.Tags);
+                u.HasMany(u => u.Tags)
+                    .WithOne(t => t.User);
 
             });
 

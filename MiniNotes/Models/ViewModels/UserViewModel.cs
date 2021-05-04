@@ -1,5 +1,4 @@
-﻿using MiniNotes_TodoList.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MiniNotes.Models.ViewModels
 {

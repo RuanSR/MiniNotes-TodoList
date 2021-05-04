@@ -16,7 +16,7 @@ namespace MiniNotes.Database.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0");
 
-            modelBuilder.Entity("MiniNotes_TodoList.Models.Note", b =>
+            modelBuilder.Entity("MiniNotes.Models.Note", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace MiniNotes.Database.Data.Migrations
                     b.ToTable("notes");
                 });
 
-            modelBuilder.Entity("MiniNotes_TodoList.Models.Tag", b =>
+            modelBuilder.Entity("MiniNotes.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,14 +64,19 @@ namespace MiniNotes.Database.Data.Migrations
                     b.Property<int?>("NoteId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NoteId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("tags");
                 });
 
-            modelBuilder.Entity("MiniNotes_TodoList.Models.User", b =>
+            modelBuilder.Entity("MiniNotes.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -86,7 +91,8 @@ namespace MiniNotes.Database.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnName("name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -96,27 +102,34 @@ namespace MiniNotes.Database.Data.Migrations
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnName("user_name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.ToTable("users");
                 });
 
-            modelBuilder.Entity("MiniNotes_TodoList.Models.Note", b =>
+            modelBuilder.Entity("MiniNotes.Models.Note", b =>
                 {
-                    b.HasOne("MiniNotes_TodoList.Models.User", "User")
+                    b.HasOne("MiniNotes.Models.User", "User")
                         .WithMany("Notes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MiniNotes_TodoList.Models.Tag", b =>
+            modelBuilder.Entity("MiniNotes.Models.Tag", b =>
                 {
-                    b.HasOne("MiniNotes_TodoList.Models.Note", null)
+                    b.HasOne("MiniNotes.Models.Note", null)
                         .WithMany("Tags")
                         .HasForeignKey("NoteId");
+
+                    b.HasOne("MiniNotes.Models.User", "User")
+                        .WithMany("Tags")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

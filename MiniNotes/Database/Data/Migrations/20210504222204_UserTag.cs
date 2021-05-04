@@ -2,7 +2,7 @@
 
 namespace MiniNotes.Database.Data.Migrations
 {
-    public partial class ModelsUpdated : Migration
+    public partial class UserTag : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace MiniNotes.Database.Data.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    name = table.Column<string>(nullable: false),
-                    user_name = table.Column<string>(nullable: false),
+                    name = table.Column<string>(maxLength: 100, nullable: false),
+                    user_name = table.Column<string>(maxLength: 100, nullable: false),
                     email = table.Column<string>(nullable: false),
                     password = table.Column<string>(nullable: false)
                 },
@@ -51,6 +51,7 @@ namespace MiniNotes.Database.Data.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     name = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     NoteId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -62,6 +63,12 @@ namespace MiniNotes.Database.Data.Migrations
                         principalTable: "notes",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_tags_users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -73,6 +80,11 @@ namespace MiniNotes.Database.Data.Migrations
                 name: "IX_tags_NoteId",
                 table: "tags",
                 column: "NoteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tags_UserId",
+                table: "tags",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
