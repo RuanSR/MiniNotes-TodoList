@@ -5,8 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MiniNotes.Database;
-using MiniNotes_TodoList.Data.Database;
-using MiniNotes_TodoList.Data.Repositories;
+using MiniNotes.Data.Database;
+using MiniNotes.Data.Repositories;
 using System;
 
 namespace MiniNotes

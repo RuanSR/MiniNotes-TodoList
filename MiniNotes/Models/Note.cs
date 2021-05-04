@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace MiniNotes_TodoList.Models
+namespace MiniNotes.Models
 {
     public class Note
     {

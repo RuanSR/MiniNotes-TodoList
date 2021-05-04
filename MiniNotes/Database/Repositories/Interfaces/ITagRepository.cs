@@ -1,8 +1,8 @@
-﻿using MiniNotes_TodoList.Models;
+﻿using MiniNotes.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MiniNotes_TodoList.Data.Repositories
+namespace MiniNotes.Data.Repositories
 {
     public interface ITagRepository
     {

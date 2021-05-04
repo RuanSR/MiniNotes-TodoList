@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using MiniNotes_TodoList.Data.Database;
-using MiniNotes_TodoList.Models;
+using MiniNotes.Data.Database;
+using MiniNotes.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MiniNotes_TodoList.Data.Repositories
+namespace MiniNotes.Data.Repositories
 {
     public class NoteRepository : INoteRepository
     {

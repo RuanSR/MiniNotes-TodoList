@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MiniNotes_TodoList.Models
+namespace MiniNotes.Models
 {
     public class User
     {
@@ -27,5 +27,6 @@ namespace MiniNotes_TodoList.Models
         public string Password { get; set; }
 
         public IList<Note> Notes { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }

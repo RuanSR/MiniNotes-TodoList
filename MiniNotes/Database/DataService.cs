@@ -1,4 +1,4 @@
-﻿using MiniNotes_TodoList.Data.Database;
+﻿using MiniNotes.Data.Database;
 
 namespace MiniNotes.Database
 {

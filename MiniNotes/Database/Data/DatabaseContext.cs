@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MiniNotes_TodoList.Models;
+using MiniNotes.Models;
 
-namespace MiniNotes_TodoList.Data.Database
+namespace MiniNotes.Data.Database
 {
     public class DatabaseContext : DbContext
     {
@@ -25,6 +25,8 @@ namespace MiniNotes_TodoList.Data.Database
 
                 u.HasMany(u => u.Notes)
                     .WithOne(n => n.User);
+
+                u.HasMany(u => u.Tags);
 
             });
 

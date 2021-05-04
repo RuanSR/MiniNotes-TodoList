@@ -1,4 +1,4 @@
-namespace MiniNotes_TodoList.Models
+namespace MiniNotes.Models
 {
     public class Tag
     {
