@@ -14,6 +14,7 @@ namespace MiniNotes.Controllers
     
     public class IndexController : Controller
     {
+        
         private readonly ILogger<IndexController> _logger;
         private readonly IUserRepository _userRepo;
 
@@ -39,7 +40,7 @@ namespace MiniNotes.Controllers
             {
                 return View(request);
             }
-            
+
             var user = await _userRepo.GetUserByLogin(request.Login, request.Password);
 
             if (user == null)
@@ -50,7 +51,7 @@ namespace MiniNotes.Controllers
 
             HttpContext.Session.SetString("Login", "true");
 
-            return RedirectToAction(nameof(Dashboard));
+            return RedirectToAction(nameof(Dashboard), user);
         }
 
         public IActionResult Create()
@@ -75,9 +76,14 @@ namespace MiniNotes.Controllers
         }
 
         [Login]
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(User user)
         {
-            return View();
+            var userViewModel = new UserViewModel
+            {
+                User = user
+            };
+
+            return View(userViewModel);
         }
 
         public IActionResult Logout()

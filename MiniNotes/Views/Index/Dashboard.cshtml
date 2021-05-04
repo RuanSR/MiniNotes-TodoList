@@ -1,51 +1,27 @@
+@model MiniNotes.Models.ViewModels.UserViewModel
+
 @{
-    Layout = null;
+    Layout = "_LayoutDash";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/tag-art.css" />
-    <link rel="stylesheet" href="~/css/ajustes.css" />
-</head>
-<body>
 
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <h6 class="navbar-brand texto-negrito" href="#">MiniNotes</h6>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-action="Logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-    </header>
-    @* MAIN *@
-    <main class="container">
-        <!-- LOGO + BARRA PESQUISA -->
+<div class="container">
+    <!-- LOGO + BARRA PESQUISA -->
+    <section id="logo-bar" class="">
         <div class="container m-2">
             <div class="row justify-content-center">
                 <div class="col-auto">
-                    <h6 class="logo-style">USER NAME</h6>
+                    <h6 class="logo-style">@Model.User.UserName</h6>
                 </div>
                 <div class="col-12 mb-2">
                     <input type="text" class="form-control" placeholder="Search Notes">
                 </div>
             </div>
         </div>
-        <p class="linha-cadastro"></p>
-        <!-- TAGS -->
+    </section>
+    <p class="linha-cadastro"></p>
+    <!-- TAGS -->
+    <section id="tags">
         <div class="container">
             <div class="row justify-content-center">
                 <h6 class="col-auto texto-negrito">TAGS</h6>
@@ -63,8 +39,10 @@
                 </div>
             </div>
         </div>
-        <p class="linha-cadastro"></p>
-        <!-- LISTAGEM -->
+    </section>
+    <p class="linha-cadastro"></p>
+    <!-- LISTAGEM -->
+    <section id="list">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12">
@@ -106,11 +84,10 @@
                 </div>
             </div>
         </div>
-    </main>
-    <footer></footer>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-</body>
-</html>
+    </section>
+</div>
+
+
+
+
 
