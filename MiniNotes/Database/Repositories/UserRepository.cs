@@ -31,7 +31,7 @@ namespace MiniNotes_TodoList.Data.Repositories
         public async Task<User> GetUserByLogin(string login, string password)
         {
             return await _dbContext.Users
-                .Where(u => u.UserName == login || u.Email == login 
+                .Where(u => (u.UserName == login || u.Email == login) 
                     && u.Password == password)
                 .FirstOrDefaultAsync();
         }
