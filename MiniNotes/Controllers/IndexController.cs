@@ -6,8 +6,8 @@ using Microsoft.Extensions.Logging;
 using MiniNotes.Library.Filters;
 using MiniNotes.Models.Requests;
 using MiniNotes.Models.ViewModels;
-using MiniNotes_TodoList.Data.Repositories;
-using MiniNotes_TodoList.Models;
+using MiniNotes.Data.Repositories;
+using MiniNotes.Models;
 
 namespace MiniNotes.Controllers
 {

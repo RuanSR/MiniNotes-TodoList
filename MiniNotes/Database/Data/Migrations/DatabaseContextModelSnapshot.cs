@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MiniNotes_TodoList.Data.Database;
+using MiniNotes.Data.Database;
 
 namespace MiniNotes.Database.Data.Migrations
 {

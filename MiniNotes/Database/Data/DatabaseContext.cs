@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using MiniNotes_TodoList.Models;
+using MiniNotes.Models;
 
-namespace MiniNotes_TodoList.Data.Database
+namespace MiniNotes.Data.Database
 {
     public class DatabaseContext : DbContext
     {
