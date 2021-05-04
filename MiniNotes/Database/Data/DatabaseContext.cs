@@ -26,6 +26,8 @@ namespace MiniNotes.Data.Database
                 u.HasMany(u => u.Notes)
                     .WithOne(n => n.User);
 
+                u.HasMany(u => u.Tags);
+
             });
 
             modelBuilder.Entity<Note>(n =>

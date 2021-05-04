@@ -27,5 +27,6 @@ namespace MiniNotes.Models
         public string Password { get; set; }
 
         public IList<Note> Notes { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }
