@@ -25,13 +25,15 @@ namespace MiniNotes.Data.Repositories
         {
             return await _dbContext.Users
                 .Where(u => u.Id == userId)
+                    .Include(u => u.Notes)
+                    .ThenInclude(u => u.Tags)
                 .FirstOrDefaultAsync();
         }
 
         public async Task<User> GetUserByLogin(string login, string password)
         {
             return await _dbContext.Users
-                .Where(u => u.UserName == login || u.Email == login 
+                .Where(u => (u.UserName == login || u.Email == login) 
                     && u.Password == password)
                 .FirstOrDefaultAsync();
         }
