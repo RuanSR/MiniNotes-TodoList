@@ -25,6 +25,8 @@ namespace MiniNotes.Data.Repositories
         {
             return await _dbContext.Users
                 .Where(u => u.Id == userId)
+                    .Include(u => u.Notes)
+                    .ThenInclude(u => u.Tags)
                 .FirstOrDefaultAsync();
         }
 

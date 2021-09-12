@@ -1,4 +1,6 @@
-﻿@{
+﻿@model MiniNotes.Models.ViewModels.UserViewModel
+
+@{
     ViewData["Title"] = "MiniNotes -TodoList";
 }
 <!DOCTYPE html>
@@ -11,26 +13,36 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/tag-art.css" />
     <link rel="stylesheet" href="~/css/ajustes.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 </head>
 <body>
     <header>
+
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <h6 class="navbar-brand texto-negrito" href="#">MiniNotes</h6>
+            <h6 class="navbar-brand texto-negrito" href="#">@Model.User?.UserName</h6>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" asp-action="Logout">Logout</a>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-secondary ml-1" data-toggle="modal" data-target="#newNote">Nova Nota</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger ml-1" asp-action="Logout">Sair</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </nav>
 
     </header>
 
-    <main class="container">
+    <main>
         @RenderBody()
     </main>
 
@@ -39,6 +51,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
