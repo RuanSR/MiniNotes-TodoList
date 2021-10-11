@@ -40,8 +40,8 @@ bld/
 # Visual Studio 2017 auto generated files
 Generated\ Files/
 
-#Databse
-SystemDB.db
+#Sqlite
+.db
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -436,3 +436,5 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+*.db
+*.db

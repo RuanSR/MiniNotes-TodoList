@@ -1,0 +1,131 @@
+@model MiniNotes.Models.ViewModels.UserViewModel
+
+@{
+    Layout = "_LayoutDash";
+}
+
+
+<div class="container-fluid">
+    <section class="row justify-content-center" id="tags">
+        <h6>#tags:</h6>
+        <div class="col-auto m-3">
+            <span class="border">ALL</span>
+            <span class="border">CASA</span>
+            <span class="border">BOLETOS</span>
+            <span class="border">FERRAMENTAS</span>
+            <span class="border">COMPRAS</span>
+            <span class="border">OUTROS</span>
+            <span class="border">ARRUMAR</span>
+            <span class="border">ROUPAS</span>
+        </div>
+    </section>
+
+    <section class="row justify-content-center" id="cards">
+        <div class="col-10">
+            @if (Model.User.Notes != null)
+            {
+                foreach (var note in Model.User.Notes)
+                {
+                    <div id="cards" class="m-3">
+                        <div class="card m-1 d-inline-block shadow-sm" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">@note.Title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Tag, Tag, Tag, Tag</h6>
+                                <p class="card-text">@note.Description</p>
+                                <a href="#" class="btn btn-outline-info">Abrir</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h2>Nehuma nota cadastrada...</h2>
+            }
+
+        </div>
+    </section>
+</div>
+
+
+<div class="modal fade" id="newNote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Create note</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" placeholder="Optional">
+                        <small id="descriptionHelp" class="form-text text-muted">Short Description.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea class="form-control" id="content" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="createNote">Create note</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{ 
+    
+    <script>
+        $(document).ready(function () { });
+
+        var create = document.querySelector("#createNote");
+        create.addEventListener("click",
+            function (event) {
+                event.preventDefault();
+                note = {
+                    title: $("#title").val(),
+                    description: $("#description").val(),
+                    content: $("#content").val(),
+                    userId: '@Model.User.Id'
+                };
+                console.log(note);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/dashboard/createNote',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify(note),
+                    success: function (response) {
+                        console.log('ok');
+                        setTimeout(function () {
+                            window.location.href = '/';
+                        },
+                            2000);
+                    },
+                    error: function (response) {
+                        console.log('erro: ' + response.responseText);
+                    }
+                });
+
+            });
+
+
+    </script>
+
+}
+
+
+
+
+
